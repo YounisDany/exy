@@ -5,22 +5,27 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>فضاء متحرك</title>
 <style>
+    /* تهيئة الصفحة */
     body {
         margin: 0;
+        padding: 0;
         overflow: hidden;
-        background: linear-gradient(to bottom, #1a237e, #000);
+        background: radial-gradient(circle at top, rgba(255, 255, 255, 0.05), transparent),
+                    linear-gradient(to bottom, #0d47a1, #000);
     }
 
+    /* تصميم النجوم */
     .star {
         position: absolute;
-        width: 2px;
-        height: 2px;
-        background: yellow;
+        width: 1.5px;
+        height: 1.5px;
+        background: #ffeb3b;
         border-radius: 50%;
-        animation: moveUp 10s linear infinite;
         opacity: 0.8;
+        animation: moveUp linear infinite;
     }
 
+    /* حركة النجوم */
     @keyframes moveUp {
         0% {
             transform: translateY(100vh);
@@ -38,14 +43,23 @@
 </head>
 <body>
     <script>
-        const starCount = 100;
+        // إعداد عدد النجوم
+        const starCount = 200;
+
+        // إنشاء النجوم بشكل عشوائي
         for (let i = 0; i < starCount; i++) {
             const star = document.createElement('div');
             star.classList.add('star');
+
+            // وضع النجمة في مكان عشوائي على الشاشة
             star.style.left = `${Math.random() * 100}vw`;
             star.style.top = `${Math.random() * 100}vh`;
+
+            // تعيين مدة الحركة وتأخير بشكل عشوائي لكل نجمة
             star.style.animationDuration = `${5 + Math.random() * 5}s`;
             star.style.animationDelay = `${Math.random() * 5}s`;
+
+            // إضافة النجمة إلى الصفحة
             document.body.appendChild(star);
         }
     </script>
